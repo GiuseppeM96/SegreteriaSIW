@@ -19,7 +19,7 @@ public class MainJDBC {
 //
 //
 //
-//	- Vedere MainJDBC File.
+//	- Vedere MainJDBC File .
 //	- Testare i Dao Studente e Gruppo.
 //	- Aggiungere l'entita' INDIRIZZO(codice, nome) per lo studente 
 	//(uno studente ha un solo indirizzo)
@@ -33,7 +33,7 @@ public class MainJDBC {
 		Date date2 = cal.getTime();
 		cal.set(1998, Calendar.OCTOBER, 1);  // 1 ottobre 1998
 		Date date3 = cal.getTime();
-
+		
 		DAOFactory factory = DAOFactory.getDAOFactory(DAOFactory.POSTGRESQL);
 		StudenteDao studenteDao = factory.getStudentDAO();
 		GruppoDao gruppoDao = factory.getGruppoDAO();
