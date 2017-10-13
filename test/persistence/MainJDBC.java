@@ -5,8 +5,10 @@ import java.util.Calendar;
 import java.util.Date;
 
 import model.Gruppo;
+import model.Indirizzo;
 import model.Studente;
 import persistence.dao.GruppoDao;
+import persistence.dao.IndirizzoDao;
 import persistence.dao.StudenteDao;
 
 public class MainJDBC {
@@ -36,6 +38,7 @@ public class MainJDBC {
 		
 		DAOFactory factory = DAOFactory.getDAOFactory(DAOFactory.POSTGRESQL);
 		StudenteDao studenteDao = factory.getStudentDAO();
+		IndirizzoDao indirizzoDao = factory.getIndirizzoDAO();
 		GruppoDao gruppoDao = factory.getGruppoDAO();
 		UtilDao util = factory.getUtilDAO();
 		util.dropDatabase();
@@ -47,6 +50,17 @@ public class MainJDBC {
 		//find studenti
 		//find gruppo
 		//delete gruppo/studenti
+		
+		Indirizzo indirizzo1 = new Indirizzo();
+		indirizzo1.setId(new Long(1));
+		indirizzo1.setNome("informatica");
+
+		Indirizzo indirizzo2 = new Indirizzo();
+		indirizzo2.setId(new Long(2));
+		indirizzo2.setNome("matematica");
+		
+		indirizzoDao.save(indirizzo1);
+		indirizzoDao.save(indirizzo2);
 		
 		Studente studente1 = new Studente("00000001","Rossi","Mario",date1);
 		
@@ -72,7 +86,9 @@ public class MainJDBC {
 		studenteDao.save(studente1);
 		studenteDao.save(studente2);
 		studenteDao.save(studente3);
-
+		studenteDao.updateStudente_Indirizzo(studente1, new Long(1));
+		studenteDao.updateStudente_Indirizzo(studente2, new Long(2));
+		
 		gruppoDao.save(gruppo1);
 
 		//RETRIEVE

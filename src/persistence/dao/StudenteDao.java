@@ -11,4 +11,6 @@ public interface StudenteDao {
 	public List<Studente> findAll();
 	public void update(Studente studente); //Update
 	public void delete(Studente studente); //Delete	
+	public void updateStudente_Indirizzo(Studente studente, Long id); // Set indirizzo
+
 }

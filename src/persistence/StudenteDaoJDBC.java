@@ -120,6 +120,25 @@ class StudenteDaoJDBC implements StudenteDao {
 			}
 		}
 	}
+	
+	public void updateStudente_Indirizzo(Studente studente, Long id) {
+		Connection connection = this.dataSource.getConnection();
+		try {
+			String update = "update studente SET indirizzo_id=? WHERE matricola=?";
+			PreparedStatement statement = connection.prepareStatement(update);
+			statement.setLong(1, id);
+			statement.setString(2, studente.getMatricola());
+			statement.executeUpdate();
+		} catch (SQLException e) {
+			throw new PersistenceException(e.getMessage());
+		} finally {
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				throw new PersistenceException(e.getMessage());
+			}
+		}
+	}
 
 	public void delete(Studente studente) {
 		Connection connection = this.dataSource.getConnection();

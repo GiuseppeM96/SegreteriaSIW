@@ -11,7 +11,7 @@ public class Studente {
 	private String nome;
 	private String cognome;
 	private Date dataNascita;
-	private Set<Corso> corsi; 
+	private Set<Corso> corsi;
 	public Studente() {
 		corsi=new HashSet<>();
 	}
@@ -78,4 +78,5 @@ public class Studente {
 		return "[" + this.getMatricola() + ", " + this.getNome() + ", " + this.getCognome() + ", "
 				+ sdf.format(this.getDataNascita()) + "]";
 	}
+
 }

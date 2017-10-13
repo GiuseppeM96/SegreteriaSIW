@@ -1,6 +1,7 @@
 package persistence;
 
 import persistence.dao.GruppoDao;
+import persistence.dao.IndirizzoDao;
 import persistence.dao.StudenteDao;
 
 public abstract class DAOFactory {
@@ -50,5 +51,7 @@ public abstract class DAOFactory {
 	public abstract GruppoDao getGruppoDAO();
 
 	public abstract persistence.UtilDao getUtilDAO();
+	
+	public abstract IndirizzoDao getIndirizzoDAO();
 
 }

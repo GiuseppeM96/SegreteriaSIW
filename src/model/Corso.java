@@ -5,6 +5,8 @@ public class Corso {
 	private Long id;
 	private String nome;
 	
+	public Corso(){}
+	
 	public Corso(String _nome) {
 		nome=_nome;
 	}

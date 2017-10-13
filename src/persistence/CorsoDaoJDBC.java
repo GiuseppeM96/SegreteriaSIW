@@ -7,25 +7,26 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import model.Indirizzo;
-import persistence.dao.IndirizzoDao;
+import model.Corso;
+import model.Corso;
+import persistence.dao.CorsoDao;
 
-public class IndirizzoDaoJDBC implements IndirizzoDao {
+public class CorsoDaoJDBC implements CorsoDao {
 
 	private DataSource dataSource;
 
-	public IndirizzoDaoJDBC(DataSource dataSource) {
+	public CorsoDaoJDBC(DataSource dataSource) {
 		this.dataSource = dataSource;
 	}
 
 	@Override
-	public void save(Indirizzo indirizzo) {
+	public void save(Corso corso) {
 		Connection connection = dataSource.getConnection();
 		try {
-			String insert = "insert INTO indirizzo(id, nome) values (?,?)";
+			String insert = "insert INTO corso(id, nome) values (?,?)";
 			PreparedStatement statement = connection.prepareStatement(insert);
-			statement.setLong(1, indirizzo.getId());
-			statement.setString(2, indirizzo.getNome());
+			statement.setLong(1, corso.getId());
+			statement.setString(2, corso.getNome());
 			statement.executeUpdate();
 		} catch (SQLException e) {
 			throw new PersistenceException(e.getMessage());
@@ -39,18 +40,18 @@ public class IndirizzoDaoJDBC implements IndirizzoDao {
 	}
 
 	@Override
-	public Indirizzo findByPrimaryKey(Long id) {
+	public Corso findByPrimaryKey(Long id) {
 		Connection connection = dataSource.getConnection();
-		String select = "select * FROM indirizzo where id=? ;";
-		Indirizzo indirizzo = null;
+		String select = "select * FROM corso where id=? ;";
+		Corso corso = null;
 		try {
 			PreparedStatement statement = connection.prepareStatement(select);
 			statement.setLong(1, id);
 			ResultSet result = statement.executeQuery();
 			if (result != null) {
-				indirizzo = new Indirizzo();
-				indirizzo.setId(result.getLong(1));
-				indirizzo.setNome(result.getString(2));
+				corso = new Corso();
+				corso.setId(result.getLong(1));
+				corso.setNome(result.getString(2));
 			}
 		} catch (SQLException e) {
 			throw new PersistenceException(e.getMessage());
@@ -61,22 +62,22 @@ public class IndirizzoDaoJDBC implements IndirizzoDao {
 				throw new PersistenceException(e.getMessage());
 			}
 		}
-		return indirizzo;
+		return corso;
 
 	}
 
 	@Override
-	public List<Indirizzo> findAll() {
+	public List<Corso> findAll() {
 		Connection connection = dataSource.getConnection();
-		String select = "select * FROM indirizzo;";
-		List<Indirizzo> list = new ArrayList<Indirizzo>();
+		String select = "select * FROM corso;";
+		List<Corso> list = new ArrayList<Corso>();
 		try {
 			PreparedStatement statement = connection.prepareStatement(select);
 			ResultSet result = statement.executeQuery();
 			while (result.next()) {
-				Indirizzo indirizzo = new Indirizzo(result.getString(2));
-				indirizzo.setId(result.getLong(1));
-				list.add(indirizzo);
+				Corso corso = new Corso(result.getString(2));
+				corso.setId(result.getLong(1));
+				list.add(corso);
 			}
 		} catch (SQLException e) {
 			throw new PersistenceException(e.getMessage());
@@ -91,13 +92,13 @@ public class IndirizzoDaoJDBC implements IndirizzoDao {
 	}
 
 	@Override
-	public void update(Indirizzo indirizzo) {
+	public void update(Corso corso) {
 		Connection connection = dataSource.getConnection();
-		String query = "update indirizzo where id=? set nome=?;";
+		String query = "update corso where id=? SET nome=?;";
 		try {
 			PreparedStatement statement = connection.prepareStatement(query);
-			statement.setLong(1, indirizzo.getId());
-			statement.setString(2, indirizzo.getNome());
+			statement.setLong(1, corso.getId());
+			statement.setString(2, corso.getNome());
 			statement.executeUpdate();
 		} catch (SQLException e) {
 			throw new PersistenceException(e.getMessage());
@@ -112,12 +113,12 @@ public class IndirizzoDaoJDBC implements IndirizzoDao {
 	}
 
 	@Override
-	public void delete(Indirizzo indirizzo) {
+	public void delete(Corso corso) {
 		Connection connection = dataSource.getConnection();
-		String delete = "delete FROM indirizzo where id=?;";
+		String delete = "delete FROM Corso where id=?;";
 		try {
 			PreparedStatement statement = connection.prepareStatement(delete);
-			statement.setLong(1, indirizzo.getId());
+			statement.setLong(1, corso.getId());
 			statement.executeUpdate();
 		} catch (SQLException e) {
 			throw new PersistenceException(e.getMessage());
