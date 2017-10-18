@@ -26,7 +26,7 @@ public class MainJDBC {
 //	- Aggiungere l'entita' INDIRIZZO(codice, nome) per lo studente 
 	//(uno studente ha un solo indirizzo)
 //	- Aggiungere l'entita' CORSO(codice, nome), molti a molti con Studente.
-	
+// test	
 	public static void main(String args[]) {
 		Calendar cal = Calendar.getInstance();
 		cal.set(1995, Calendar.MARCH, 21); // // 21 marzo 1995
