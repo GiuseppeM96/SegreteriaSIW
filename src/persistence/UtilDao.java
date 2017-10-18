@@ -49,7 +49,7 @@ public class UtilDao {
 					+ "create table studente(matricola CHARACTER(8) primary key,"
 					+ "nome VARCHAR(255),cognome VARCHAR(255),"
 					+ "data_nascita DATE, gruppo_id bigint REFERENCES gruppo(\"id\"), indirizzo_id bigint REFERENCES indirizzo(\"id\"));"
-					+ "create table segue(indirizzo_id bigint REFERENCES indirizzo(\"id\"), matricola CHARACTER(8) REFERENCES studente(matricola));";
+					+ "create table segue(corso_id bigint REFERENCES corso(\"id\"), matricola CHARACTER(8) REFERENCES studente(matricola));";
 			PreparedStatement statement = connection.prepareStatement(delete);
 			statement.executeUpdate();
 			System.out.println("Executed create database");

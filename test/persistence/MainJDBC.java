@@ -4,9 +4,11 @@ package persistence;
 import java.util.Calendar;
 import java.util.Date;
 
+import model.Corso;
 import model.Gruppo;
 import model.Indirizzo;
 import model.Studente;
+import persistence.dao.CorsoDao;
 import persistence.dao.GruppoDao;
 import persistence.dao.IndirizzoDao;
 import persistence.dao.StudenteDao;
@@ -40,6 +42,7 @@ public class MainJDBC {
 		StudenteDao studenteDao = factory.getStudentDAO();
 		IndirizzoDao indirizzoDao = factory.getIndirizzoDAO();
 		GruppoDao gruppoDao = factory.getGruppoDAO();
+		CorsoDao corsoDao= factory.getCorsoDAO();
 		UtilDao util = factory.getUtilDAO();
 		util.dropDatabase();
 		
@@ -50,6 +53,17 @@ public class MainJDBC {
 		//find studenti
 		//find gruppo
 		//delete gruppo/studenti
+		
+		Corso corso1 = new Corso();
+		corso1.setId(new Long(1));
+		corso1.setNome("analisi");
+		
+		Corso corso2 = new Corso();
+		corso2.setId(new Long(2));
+		corso2.setNome("fondamenti");
+
+		corsoDao.save(corso1);
+		corsoDao.save(corso2);
 		
 		Indirizzo indirizzo1 = new Indirizzo();
 		indirizzo1.setId(new Long(1));
@@ -88,6 +102,10 @@ public class MainJDBC {
 		studenteDao.save(studente3);
 		studenteDao.updateStudente_Indirizzo(studente1, new Long(1));
 		studenteDao.updateStudente_Indirizzo(studente2, new Long(2));
+		studenteDao.updateStudente_Segue(studente1, corso1);
+		studenteDao.updateStudente_Segue(studente1, corso2);
+		studenteDao.updateStudente_Segue(studente2, corso1);
+		studenteDao.updateStudente_Segue(studente3, corso2);
 		
 		gruppoDao.save(gruppo1);
 
@@ -119,5 +137,7 @@ public class MainJDBC {
 		for(Studente s : studenteDao.findAll()) {
 			System.out.println(s);
 		}		
+		
+		
 	}
 }

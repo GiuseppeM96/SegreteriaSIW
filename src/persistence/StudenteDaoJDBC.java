@@ -1,5 +1,6 @@
 package persistence;
 
+import model.Corso;
 import model.Studente;
 import persistence.dao.StudenteDao;
 
@@ -146,6 +147,26 @@ class StudenteDaoJDBC implements StudenteDao {
 			String delete = "delete FROM studente WHERE matricola = ? ";
 			PreparedStatement statement = connection.prepareStatement(delete);
 			statement.setString(1, studente.getMatricola());
+			statement.executeUpdate();
+		} catch (SQLException e) {
+			throw new PersistenceException(e.getMessage());
+		} finally {
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				throw new PersistenceException(e.getMessage());
+			}
+		}
+	}
+
+	@Override
+	public void updateStudente_Segue(Studente studente, Corso corso) {
+		Connection connection = this.dataSource.getConnection();
+		try {
+			String update = "insert INTO segue(corso_id,matricola) values(?,?);";
+			PreparedStatement statement = connection.prepareStatement(update);
+			statement.setLong(1, corso.getId());
+			statement.setString(2, studente.getMatricola());
 			statement.executeUpdate();
 		} catch (SQLException e) {
 			throw new PersistenceException(e.getMessage());
