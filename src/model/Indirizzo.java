@@ -12,6 +12,7 @@ public class Indirizzo {
 		studenti = new HashSet<>();
 	}
 
+
 	public Indirizzo(String _nome) {
 		nome = _nome;
 		studenti = new HashSet<>();
@@ -41,5 +42,6 @@ public class Indirizzo {
 		this.studenti = studenti;
 	}
 
+	
 	
 }
