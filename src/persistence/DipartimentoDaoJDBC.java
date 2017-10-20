@@ -4,32 +4,30 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.SQLType;
 import java.util.ArrayList;
 import java.util.List;
 
-import model.Corso;
 import model.CorsoDiLaurea;
 import model.Dipartimento;
-import model.Gruppo;
+import model.Indirizzo;
 import persistence.dao.CorsoDiLaureaDao;
+import persistence.dao.DipartimentoDao;
 
-public class CorsoDiLaureaDaoJDBC implements CorsoDiLaureaDao {
+public class DipartimentoDaoJDBC implements DipartimentoDao {
 	private DataSource dataSource;
 
-	public CorsoDiLaureaDaoJDBC(DataSource dataSource) {
+	public DipartimentoDaoJDBC(DataSource dataSource) {
 		this.dataSource = dataSource;
 	}
 
 	@Override
-	public void save(CorsoDiLaurea corso) {
+	public void save(Dipartimento dipartimento) {
 		Connection connection = dataSource.getConnection();
 		try {
-			String insert = "insert INTO corsoDiLaurea (id, nome, dipartimento_id) values (?,?,?)";
+			String insert = "insert INTO dipartimento (id, nome) values (?,?)";
 			PreparedStatement statement = connection.prepareStatement(insert);
-			statement.setLong(1, corso.getId());
-			statement.setString(2, corso.getNome());
-			statement.setLong(3, corso.getDipartimento().getId());
+			statement.setLong(1, dipartimento.getId());
+			statement.setString(2, dipartimento.getNome());
 			statement.executeUpdate();
 		} catch (SQLException e) {
 			throw new PersistenceException(e.getMessage());
@@ -43,21 +41,18 @@ public class CorsoDiLaureaDaoJDBC implements CorsoDiLaureaDao {
 	}
 
 	@Override
-	public CorsoDiLaurea findByPrimaryKey(Long id) {
+	public Dipartimento findByPrimaryKey(Long id) {
 		Connection connection = dataSource.getConnection();
-		String select = "select C.*,D.nome FROM corsoDiLaurea as C,dipartimento as D WHERE C.dipartimento_id=D.id && C.id=?;";
-		CorsoDiLaurea cdl = null;
+		String select = "select * FROM dipartimento where id=? ;";
+		Dipartimento dipartimento = null;
 		try {
 			PreparedStatement statement = connection.prepareStatement(select);
 			statement.setLong(1, id);
 			ResultSet result = statement.executeQuery();
 			if (result != null) {
-				cdl = new CorsoDiLaurea();
-				cdl.setId(result.getLong(1));
-				cdl.setNome(result.getString(2));
-				Dipartimento dipartimento = new Dipartimento(result.getString(4));
-				dipartimento.setId(result.getLong(3));
-				cdl.setDipartimento(dipartimento);
+				dipartimento = new Dipartimento();
+				dipartimento.setId(result.getLong(1));
+				dipartimento.setNome(result.getString(2));
 			}
 		} catch (SQLException e) {
 			throw new PersistenceException(e.getMessage());
@@ -68,26 +63,22 @@ public class CorsoDiLaureaDaoJDBC implements CorsoDiLaureaDao {
 				throw new PersistenceException(e.getMessage());
 			}
 		}
-		return cdl;
+		return dipartimento;
+
 	}
 
 	@Override
-	public List<CorsoDiLaurea> findAll() {
+	public List<Dipartimento> findAll() {
 		Connection connection = dataSource.getConnection();
-		String select = "select C.*,D.nome FROM corsoDiLaurea as C,dipartimento as D WHERE C.dipartimento_id=D.id;";
-		List<CorsoDiLaurea> list = new ArrayList<CorsoDiLaurea>();
+		String select = "select * FROM dipartimento;";
+		List<Dipartimento> list = new ArrayList<Dipartimento>();
 		try {
 			PreparedStatement statement = connection.prepareStatement(select);
 			ResultSet result = statement.executeQuery();
 			while (result.next()) {
-
-				CorsoDiLaurea cdl = new CorsoDiLaurea();
-				cdl.setId(result.getLong(1));
-				cdl.setNome(result.getString(2));
-				Dipartimento dipartimento = new Dipartimento(result.getString(4));
-				dipartimento.setId(result.getLong(3));
-				cdl.setDipartimento(dipartimento);
-				list.add(cdl);
+				Dipartimento dipartimento = new Dipartimento(result.getString(2));
+				dipartimento.setId(result.getLong(1));
+				list.add(dipartimento);
 			}
 		} catch (SQLException e) {
 			throw new PersistenceException(e.getMessage());
@@ -102,14 +93,43 @@ public class CorsoDiLaureaDaoJDBC implements CorsoDiLaureaDao {
 	}
 
 	@Override
-	public void update(CorsoDiLaurea cdl) {
+	public void update(Dipartimento dipartimento) {
 		Connection connection = dataSource.getConnection();
-		String query = "update corsoDiLaurea SET nome=?, dipartimento_id=? where id=?;";
+		String query = "update dipartimento  set nome=? where id=?;";
 		try {
 			PreparedStatement statement = connection.prepareStatement(query);
-			statement.setLong(3, cdl.getId());
-			statement.setString(1, cdl.getNome());
-			statement.setLong(2, cdl.getDipartimento().getId());
+			statement.setLong(2, dipartimento.getId());
+			statement.setString(1, dipartimento.getNome());
+			statement.executeUpdate();
+		} catch (SQLException e) {
+			throw new PersistenceException(e.getMessage());
+		} finally {
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				throw new PersistenceException(e.getMessage());
+			}
+		}
+
+	}
+
+	@Override
+	public void delete(Dipartimento dipartimento) {
+		Connection connection = dataSource.getConnection();
+		ArrayList<CorsoDiLaurea> corsi= new ArrayList<>();
+		CorsoDiLaureaDao corso=DAOFactory.getDAOFactory(DAOFactory.POSTGRESQL).getCorsoDiLaureaDAO();
+		corsi.addAll(corso.findAll());
+		for(CorsoDiLaurea c: corsi) {
+			if(c.getDipartimento().getId().equals(dipartimento.getId())) {
+				c.getDipartimento().setId(null);
+				System.out.println(c.getDipartimento().getId()+" "+dipartimento.getId());
+				corso.update(c);
+			}
+		}
+		String delete = "delete FROM dipartimento where id=?;";
+		try {
+			PreparedStatement statement = connection.prepareStatement(delete);
+			statement.setLong(1, dipartimento.getId());
 			statement.executeUpdate();
 		} catch (SQLException e) {
 			throw new PersistenceException(e.getMessage());
@@ -122,22 +142,4 @@ public class CorsoDiLaureaDaoJDBC implements CorsoDiLaureaDao {
 		}
 	}
 
-	@Override
-	public void delete(CorsoDiLaurea cdl) {
-		Connection connection = dataSource.getConnection();
-		String delete = "delete FROM corsoDiLaurea where id=?;";
-		try {
-			PreparedStatement statement = connection.prepareStatement(delete);
-			statement.setLong(1, cdl.getId());
-			statement.executeUpdate();
-		} catch (SQLException e) {
-			throw new PersistenceException(e.getMessage());
-		} finally {
-			try {
-				connection.close();
-			} catch (SQLException e) {
-				throw new PersistenceException(e.getMessage());
-			}
-		}
-	}
 }

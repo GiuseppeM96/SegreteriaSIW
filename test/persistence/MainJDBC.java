@@ -5,10 +5,14 @@ import java.util.Calendar;
 import java.util.Date;
 
 import model.Corso;
+import model.CorsoDiLaurea;
+import model.Dipartimento;
 import model.Gruppo;
 import model.Indirizzo;
 import model.Studente;
 import persistence.dao.CorsoDao;
+import persistence.dao.CorsoDiLaureaDao;
+import persistence.dao.DipartimentoDao;
 import persistence.dao.GruppoDao;
 import persistence.dao.IndirizzoDao;
 import persistence.dao.StudenteDao;
@@ -41,6 +45,9 @@ public class MainJDBC {
 		DAOFactory factory = DAOFactory.getDAOFactory(DAOFactory.POSTGRESQL);
 		StudenteDao studenteDao = factory.getStudentDAO();
 		IndirizzoDao indirizzoDao = factory.getIndirizzoDAO();
+		CorsoDiLaureaDao corsoDiLaureaDao= factory.getCorsoDiLaureaDAO();
+		DipartimentoDao dipartimentoDao= factory.getDipartimentoDAO();
+
 		GruppoDao gruppoDao = factory.getGruppoDAO();
 		CorsoDao corsoDao= factory.getCorsoDAO();
 		UtilDao util = factory.getUtilDAO();
@@ -53,6 +60,39 @@ public class MainJDBC {
 		//find studenti
 		//find gruppo
 		//delete gruppo/studenti
+		
+		Dipartimento dip1= new Dipartimento("informaticamatematica");
+		dip1.setId(new Long(1));
+		Dipartimento dip2= new Dipartimento("lettere");
+		dip2.setId(new Long(2));
+		dipartimentoDao.save(dip1);
+		dip1.setNome("infomate");
+		dipartimentoDao.update(dip1);
+		dipartimentoDao.save(dip2);
+
+		
+		CorsoDiLaurea cdl1= new CorsoDiLaurea();
+		cdl1.setId(new Long(1));
+		cdl1.setNome("Informatica");
+		cdl1.setDipartimento(dip1);
+		
+		CorsoDiLaurea cdl2= new CorsoDiLaurea();
+		cdl2.setId(new Long(2));
+		cdl2.setNome("Matematica");
+		cdl2.setDipartimento(dip1);
+
+		
+		CorsoDiLaurea cdl3= new CorsoDiLaurea();
+		cdl3.setId(new Long(3));
+		cdl3.setNome("filologia");
+		cdl3.setDipartimento(dip2);
+
+		
+		corsoDiLaureaDao.save(cdl1);
+		corsoDiLaureaDao.save(cdl2);
+		corsoDiLaureaDao.save(cdl3);
+		dipartimentoDao.delete(dip2);
+
 		
 		Corso corso1 = new Corso();
 		corso1.setId(new Long(1));
@@ -136,7 +176,17 @@ public class MainJDBC {
 		gruppoDao.delete(gruppo1);			
 		for(Studente s : studenteDao.findAll()) {
 			System.out.println(s);
-		}		
+		}
+		
+		System.out.println("Elenco dipartimento");
+		for(Dipartimento s : dipartimentoDao.findAll()) {
+			System.out.println(s);
+		}
+		
+		System.out.println("Elenco corsi di laurea");
+		for(CorsoDiLaurea s : corsoDiLaureaDao.findAll()) {
+			System.out.println(s);
+		}
 		
 		
 	}

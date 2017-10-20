@@ -1,5 +1,6 @@
 package model;
 
+import java.text.SimpleDateFormat;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -8,19 +9,19 @@ public class CorsoDiLaurea {
 	String nome;
 	Dipartimento dipartimento;
 	Set<Corso> corsi;
-	
+
 	public CorsoDiLaurea() {
-		nome="";
-		corsi=new HashSet<>();
+		nome = "";
+		corsi = new HashSet<>();
 	}
-	
-	public CorsoDiLaurea(String _nome,Dipartimento _dipartimento){
-		nome=_nome;
-		dipartimento=_dipartimento;
-		corsi=new HashSet<>();
+
+	public CorsoDiLaurea(String _nome, Dipartimento _dipartimento) {
+		nome = _nome;
+		dipartimento = _dipartimento;
+		corsi = new HashSet<>();
 	}
-	
-	public void addCorso(Corso corso){
+
+	public void addCorso(Corso corso) {
 		corsi.add(corso);
 	}
 
@@ -55,5 +56,10 @@ public class CorsoDiLaurea {
 	public void setCorsi(Set<Corso> corsi) {
 		this.corsi = corsi;
 	}
-	
+
+	public String toString() {
+
+		return "[" + this.getId() + ", " + this.getNome() + " " + this.getDipartimento().toString() + "]";
+	}
+
 }
