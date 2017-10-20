@@ -18,7 +18,8 @@ public class UtilDao {
 		try {
 			String delete = "drop SEQUENCE if EXISTS sequenza_id;" + "drop table if exists segue;"
 					+ "drop table if EXISTS studente;" + "drop table if exists gruppo;" + "drop table if exists corso;"
-					+ "drop table if exists indirizzo;";
+					+ "drop table if exists indirizzo;"+ "drop table if exists corsoDiLaurea;" + "drop table if exists dipartimento;"
+					+ "drop table if exists appartiene;";
 			PreparedStatement statement = connection.prepareStatement(delete);
 
 			statement.executeUpdate();
@@ -46,6 +47,9 @@ public class UtilDao {
 					+ "create table gruppo (\"id\" bigint primary key, nome varchar(255));"
 					+ "create table indirizzo (\"id\" bigint primary key, nome varchar(255));"
 					+ "create table corso (\"id\" bigint primary key, nome varchar(255));"
+					+ "create table dipartimento (\"id\" bigint primary key, nome varchar(255));"
+					+ "create table corsoDiLaurea (\"id\" bigint primary key, nome varchar(255), dipartimento_id bigint REFERENCES dipartimento(\"id\"));"
+					+ "create table appartiente (corso_id bigint REFERENCES corso(\"id\"), corsoDiLaurea_id bigint REFERENCES corsoDiLaurea(\"id\"));"
 					+ "create table studente(matricola CHARACTER(8) primary key,"
 					+ "nome VARCHAR(255),cognome VARCHAR(255),"
 					+ "data_nascita DATE, gruppo_id bigint REFERENCES gruppo(\"id\"), indirizzo_id bigint REFERENCES indirizzo(\"id\"));"
