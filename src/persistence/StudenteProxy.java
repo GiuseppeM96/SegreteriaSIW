@@ -22,7 +22,7 @@ public class StudenteProxy extends Studente {
 		Connection connection = this.dataSource.getConnection();
 		try {
 			PreparedStatement statement;
-			String query = "select c.nome , c.id from corso as c, segue as s where c.id= s.corso_id && s.matricola=?";
+			String query = "select c.nome , c.id from corso as c, segue as s where c.id= s.corso_id and s.matricola=?";
 			statement = connection.prepareStatement(query);
 			statement.setString(1, this.getMatricola());
 			ResultSet result = statement.executeQuery();

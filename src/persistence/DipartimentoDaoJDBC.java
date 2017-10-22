@@ -115,21 +115,16 @@ public class DipartimentoDaoJDBC implements DipartimentoDao {
 
 	@Override
 	public void delete(Dipartimento dipartimento) {
+		
 		Connection connection = dataSource.getConnection();
-		ArrayList<CorsoDiLaurea> corsi= new ArrayList<>();
-		CorsoDiLaureaDao corso=DAOFactory.getDAOFactory(DAOFactory.POSTGRESQL).getCorsoDiLaureaDAO();
-		corsi.addAll(corso.findAll());
-		for(CorsoDiLaurea c: corsi) {
-			if(c.getDipartimento().getId().equals(dipartimento.getId())) {
-				c.getDipartimento().setId(null);
-				System.out.println(c.getDipartimento().getId()+" "+dipartimento.getId());
-				corso.update(c);
-			}
-		}
 		String delete = "delete FROM dipartimento where id=?;";
+		String updateCdl="update corsoDiLaurea set dipartimento_id=null where dipartimento_id=?;";
 		try {
 			PreparedStatement statement = connection.prepareStatement(delete);
 			statement.setLong(1, dipartimento.getId());
+			PreparedStatement statementUpdate = connection.prepareStatement(updateCdl);
+			statementUpdate.setLong(1, dipartimento.getId());
+			statementUpdate.executeUpdate();
 			statement.executeUpdate();
 		} catch (SQLException e) {
 			throw new PersistenceException(e.getMessage());

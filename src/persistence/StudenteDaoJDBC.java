@@ -40,7 +40,9 @@ class StudenteDaoJDBC implements StudenteDao {
 			}
 		}
 	}  
-
+	public DataSource getDataSource(){
+		return dataSource;
+	}
 	public Studente findByPrimaryKey(String matricola) {
 		Connection connection = this.dataSource.getConnection();
 		Studente studente = null;

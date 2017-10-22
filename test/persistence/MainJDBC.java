@@ -86,13 +86,11 @@ public class MainJDBC {
 		cdl3.setId(new Long(3));
 		cdl3.setNome("filologia");
 		cdl3.setDipartimento(dip2);
-
 		
 		corsoDiLaureaDao.save(cdl1);
 		corsoDiLaureaDao.save(cdl2);
 		corsoDiLaureaDao.save(cdl3);
 		dipartimentoDao.delete(dip2);
-
 		
 		Corso corso1 = new Corso();
 		corso1.setId(new Long(1));
@@ -167,6 +165,12 @@ public class MainJDBC {
 //		gruppo1.addStudente(studente3);
 //		gruppoDao.update(gruppo1);
 		
+		StudenteProxy studenteProva=new StudenteProxy(((StudenteDaoJDBC)studenteDao).getDataSource());
+		studenteProva.setMatricola("00000002");
+		System.out.println("Corsi dello studente 00000002");
+		for(Corso c : studenteProva.getCorsi())
+			System.out.println(c);
+		System.out.println("");
 		System.out.println("Retrieve all gruppo: proxy all'opera");
 		for(Gruppo g : gruppoDao.findAll()) {
 			System.out.println(g);
@@ -183,7 +187,9 @@ public class MainJDBC {
 			System.out.println(s);
 		}
 		
+		System.out.println("");
 		System.out.println("Elenco corsi di laurea");
+		System.out.println(corsoDiLaureaDao.findAll().size());
 		for(CorsoDiLaurea s : corsoDiLaureaDao.findAll()) {
 			System.out.println(s);
 		}

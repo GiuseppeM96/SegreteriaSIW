@@ -45,13 +45,13 @@ public class CorsoDiLaureaDaoJDBC implements CorsoDiLaureaDao {
 	@Override
 	public CorsoDiLaurea findByPrimaryKey(Long id) {
 		Connection connection = dataSource.getConnection();
-		String select = "select C.*,D.nome FROM corsoDiLaurea as C,dipartimento as D WHERE C.dipartimento_id=D.id && C.id=?;";
+		String select = "select C.*,D.nome FROM corsoDiLaurea as C,dipartimento as D WHERE C.dipartimento_id=D.id and C.id=?;";
 		CorsoDiLaurea cdl = null;
 		try {
 			PreparedStatement statement = connection.prepareStatement(select);
 			statement.setLong(1, id);
 			ResultSet result = statement.executeQuery();
-			if (result != null) {
+			if (result.next()) {
 				cdl = new CorsoDiLaurea();
 				cdl.setId(result.getLong(1));
 				cdl.setNome(result.getString(2));
@@ -74,7 +74,7 @@ public class CorsoDiLaureaDaoJDBC implements CorsoDiLaureaDao {
 	@Override
 	public List<CorsoDiLaurea> findAll() {
 		Connection connection = dataSource.getConnection();
-		String select = "select C.*,D.nome FROM corsoDiLaurea as C,dipartimento as D WHERE C.dipartimento_id=D.id;";
+		String select = "select C.*,D.nome FROM corsoDiLaurea as C left join dipartimento as D on C.dipartimento_id=D.id;";
 		List<CorsoDiLaurea> list = new ArrayList<CorsoDiLaurea>();
 		try {
 			PreparedStatement statement = connection.prepareStatement(select);

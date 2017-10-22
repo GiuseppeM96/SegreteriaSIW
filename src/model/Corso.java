@@ -1,5 +1,4 @@
 package model;
-
 public class Corso {
 	
 	private Long id;
@@ -23,5 +22,9 @@ public class Corso {
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-	
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		return "[ "+id+" , "+nome+" ]";
+	}
 }
