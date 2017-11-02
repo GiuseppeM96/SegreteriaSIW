@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+
+<header>
+	<h1> Elenco studenti</h1>
+	<h2> Portale per la gestione degli studenti afferenti a qualche corso di laurea </h2>
+</header>
+<form method="post" action="iscrivi.php">
+<table>
+	
+	<tr>
+		<td>MATRICOLA </td><td><input name="matricola" type="text"/></td>
+	</tr>
+	<tr>
+		<td>NOME </td> <td><input name="nome" type="text"/></td>
+	</tr>
+	<tr>
+		<td>COGNOME </td><td><input name="congome" type="text"/></td>
+	</tr>
+	<tr>
+		<td> DATA DI NASCITA </td><td><input name="datadinascita" type="date"/></td>
+	</tr>
+	<tr>
+		<td>INDIRIZZO DI STUDI</td>
+		<td> 
+			<select name="indirizzo">
+				<optgroup label="INFORMATICA">
+					<option value="2"> Ingegneria del Software</option>
+					<option value="3"> Sistemi Operativi</option>				
+				</optgroup>
+				<optgroup label="Storia">
+					<option value="4"> Archeologia</option>
+				</optgroup>
+			</select> </td>
+	</tr>
+	<tr>
+		<td> PASSWORD: </td><td><input name="datadinascita" type="password"/></td>
+	</tr>
+	<tr>
+		<td></td>
+	</tr>
+</table>
+</form>
+</body>
+</html>
