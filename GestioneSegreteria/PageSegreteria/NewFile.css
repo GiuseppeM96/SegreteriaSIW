@@ -1,0 +1,30 @@
+@CHARSET "UTF-8";
+
+BODY {
+	margin-top: 50px;
+	margin-left: 20px;
+	margin-right: 20px;
+	margin-bottom: 50px;
+	font-family : verdana;
+	text-align: center;
+}
+.border{
+	border: 5px groove black;
+}
+.leftText{
+	text-align: left;
+}
+caption.border {
+	text-align:center;
+	color: white;
+	background-color: orange;
+}
+tr{
+	background-color: silver;
+}
+th{
+	background-color: teal;
+}
+
+
+
