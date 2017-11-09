@@ -1,0 +1,39 @@
+<html>
+<head lang="it">
+<title>Gestione Segreteria Studenti</title>
+<meta charset="utf-8">
+</head>
+<body>
+<header>
+<h1>Iscrivi un nuovo Studente</h1>
+<h2>Compila i seguente form per registrare un nuovo studente</h2>
+</header>
+
+<section id="iscriviStudente">
+<form method="get" action="confermaIscrizione.php">
+	Matricola: <input name="matricola" type="text" />
+	Nome: <input name="nome" type="text" />
+	Cognome: <input name="cognome" type="text" />
+	Data di Nascita: <input name="dataNascita" type="date" />
+	Definisci una password per lo studente: <input name="password" type="password" />
+	Conferm password: <input name="confermaPassword" type="password" />
+	Indirizzo: 		
+	<select name="indirimzo">
+		<optgroup label="Intelligenza Artificiale">
+		<option value="rob">Robotica</option>
+		<option value="logic">Logica Computazionale</option>
+		</optgroup>
+		<optgroup label="Storia">
+		<option value="arch">Archeologia</option>
+		</optgroup>				
+	</select>		
+	<input name="validaDati" type="button" value="Valida Dati"/>
+	<input name="resetDati" type="reset" value="Reset Dati"/>
+	<input name="inviaDati" type="submit" value="Invia Dati"/>
+	
+</form>
+</section>
+
+
+</body>
+</html>
