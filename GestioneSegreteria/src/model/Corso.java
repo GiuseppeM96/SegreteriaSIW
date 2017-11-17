@@ -7,7 +7,7 @@ public class Corso {
 	private Long codice;
 	private String nome;
 	private Set<Studente> studenti;
-	
+	//
 	public Long getCodice() {
 		return codice;
 	}

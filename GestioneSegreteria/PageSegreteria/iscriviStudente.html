@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html>
 <head>
@@ -80,4 +81,69 @@ h2 {
 		</table>
 	</form>
 </body>
+=======
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<link rel="stylesheet" href="formStyle.css" type="text/css">
+
+</head>
+<body>
+
+<header>
+	<h1> Elenco studenti</h1>
+	<h2> Portale per la gestione degli studenti afferenti a qualche corso di laurea </h2>
+</header>
+<script type="text/javascript">
+	alert("Benvenuti nel portale di iscrizione di un nuovo studente");
+</script>
+<section class="RegisterModule">
+	<form method="get" action="confermaIscrizione.php">
+		<div class="campo"> 
+			<span class="label">Matricola: </span>
+			<span class="valore"> <input name="matricola" type="text" /> </span>
+		</div>
+		<div class="campo"> 
+			<span class="label">Nome:</span>
+			<span class="valore"> <input class="valore" name="nome" type="text" /></span>
+		</div>
+		<div class="campo"> 
+			<span class="label">Cognome: </span>
+			<span class="valore"><input class="valore" name="cognome" type="text" /></span>
+		</div>
+		<div class="campo"> 
+			<span class="label">Data di Nascita:</span> 
+			<span class="valore"><input class="valore" name="dataNascita" type="date" /></span>
+		</div>
+		<div class="campo"> 
+			<span class="label">Definisci una password per lo studente: </span>
+			<span class="valore"><input class="valore" name="password" type="password" /></span>
+		</div>
+		<div class="campo"> 
+			<span class="label">Conferm password: </span>
+			<span class="valore"><input class="valore" name="confermaPassword" type="password" /></span>
+		</div>
+		<div class="campo"> 
+			<span class="label">Indirizzo:</span> 
+			<span class="valore">
+				<select name="indirimzo">
+					<optgroup label="Intelligenza Artificiale">
+					<option value="rob">Robotica</option>
+					<option value="logic">Logica Computazionale</option>
+					</optgroup>
+					<optgroup label="Storia">
+					<option value="arch">Archeologia</option>
+					</optgroup>				
+				</select></span>
+		</div>
+		
+		<input name="validaDati" type="button" value="Valida Dati"/>
+		<input name="resetDati" type="reset" value="Reset Dati"/>
+		<input name="inviaDati" type="submit" value="Invia Dati"/>
+	</form>
+</section>
+</body>
+>>>>>>> branch 'master' of https://github.com/GiuseppeM96/SegreteriaSIW.git
 </html>

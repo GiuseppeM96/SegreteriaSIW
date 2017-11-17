@@ -1,0 +1,13 @@
+@CHARSET "ISO-8859-1";
+.RegisterModule{
+	border: 2px solid black;
+}
+.RegisterModule .campo{
+	margin-top: 20px;
+	margin-left: 20px;
+}
+.label+.valore{
+	
+	position: absolute;
+	left: 300px;
+}
