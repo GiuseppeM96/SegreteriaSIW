@@ -1,52 +1,74 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="UTF-8">
-	<link rel="stylesheet" href="NewFile.css" type="text/css">
-	<title>Insert title here</title>
+<meta charset="UTF-8">
+<style>
+	.bg-orange{
+		background-color: #f4511e;
+	}
+</style>
+<link rel="stylesheet" type="text/css"
+	href="C:/Users/giuse/Documents/GitHub/SegreteriaSIW/GestioneSegreteria/css/bootstrap.min.css">
+<link rel="stylesheet"
+	href="C:/Users/giuse/Documents/GitHub/SegreteriaSIW/GestioneSegreteria/css/bootstrap-theme.min.css">
+<script
+	src="C:/Users/giuse/Documents/GitHub/SegreteriaSIW/GestioneSegreteria/js/jquery-3.2.1.min.js"></script>
+<script
+	src="C:/Users/giuse/Documents/GitHub/SegreteriaSIW/GestioneSegreteria/js/bootstrap.min.js"></script>
+<title>Insert title here</title>
 </head>
 <body>
-	<header>
-		<h1 class="border"> Portale per la gestione degli studenti afferenti a qualche corso di laurea </h1>
-		<h2> Elenco studenti</h2>
-	</header>
-	<table >
-	<thead>
-		<tr>
-			<th> Matricola</th>
-			<th> Nome</th>
-			<th> Cognome</th>
-			<th> Data di nascita</th>
-			<th> Indirizzo di studi</th>
-		</tr>
-	</thead>
-	<tbody>
-		<tr>
-			<td> 123456</td>
-			<td> ciccio</td>
-			<td> pasticcio</td>
-			<td> 12-07-1990</td>
-			<td> Intelligenza Artificiale</td>
-		</tr>
-		<tr>
-			<td> 12356</td>
-			<td> ciccio</td>
-			<td> pasticcio</td>
-			<td> 12-07-1990</td>
-			<td> Intelligenza Artificiale</td>
-		</tr>
-	
-	</tbody>
-	<tfoot>
-		<tr>
-			<td> <a href=""> Ordina per matricola</a></td>
-			<td> <a href=""> Ordina per nome</a></td>
-			<td> <a href=""> Ordina per cognome</a></td>
-			<td> <a href=""> Ordina per data di nascita</a></td>
-			<td> <a href=""> Ordina per Indirizzo di studi</a></td>
-			
-		</tr>
-	</tfoot>
-	</table>
+	<div class="container-fluid">
+
+		<header>
+			<h1 class="well text-center">Portale per la gestione degli studenti
+				afferenti a qualche corso di laurea</h1>
+			<h2 class="well text-center">Elenco studenti</h2>
+		</header>
+		<div>
+			<div class="col-lg-2"></div>
+			<div class="col-lg-8">
+				<table class="table table-hover">
+					<thead>
+						<tr>
+							<th>Matricola</th>
+							<th>Nome</th>
+							<th>Cognome</th>
+							<th>Data di nascita</th>
+							<th>Indirizzo di studi</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>123456</td>
+							<td>ciccio</td>
+							<td>pasticcio</td>
+							<td>12-07-1990</td>
+							<td>Intelligenza Artificiale</td>
+						</tr>
+						<tr>
+							<td>12356</td>
+							<td>ciccio</td>
+							<td>pasticcio</td>
+							<td>12-07-1990</td>
+							<td>Intelligenza Artificiale</td>
+						</tr>
+
+					</tbody>
+					<tfoot>
+						<tr>
+							<td><a href=""> Ordina per matricola</a></td>
+							<td><a href=""> Ordina per nome</a></td>
+							<td><a href=""> Ordina per cognome</a></td>
+							<td><a href=""> Ordina per data di nascita</a></td>
+							<td><a href=""> Ordina per Indirizzo di studi</a></td>
+
+						</tr>
+					</tfoot>
+				</table>
+			</div>
+			<div class="col-lg-2"></div>
+		</div>
+	</div>
 </body>
 </html>

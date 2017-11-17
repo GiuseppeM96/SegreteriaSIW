@@ -3,6 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <title>Gestione Segreteria Studenti</title>
+<link rel="stylesheet" type="text/css"
+	href="C:/Users/giuse/Documents/GitHub/SegreteriaSIW/GestioneSegreteria/css/bootstrap.min.css">
+<link rel="stylesheet"
+	href="C:/Users/giuse/Documents/GitHub/SegreteriaSIW/GestioneSegreteria/css/bootstrap-theme.min.css">
+<script
+	src="C:/Users/giuse/Documents/GitHub/SegreteriaSIW/GestioneSegreteria/js/jquery-3.2.1.min.js"></script>
+<script
+	src="C:/Users/giuse/Documents/GitHub/SegreteriaSIW/GestioneSegreteria/js/bootstrap.min.js"></script>
 </head>
 <body>
 	<header>
@@ -13,15 +21,79 @@
 		</div>
 		<figure>
 			<div align="center">
-				<a href="images/universita.jpg"> <img width="500"
+				<a href="images/universita.jpg"> <img class="img-thumbnail" width="500"
 					src="images/universita.jpeg">
 				</a>
-			
-			<figcaption>Il nostro ateneo</figcaption>
+
+				<figcaption>Il nostro ateneo</figcaption>
 			</div>
 		</figure>
+		<nav class="navbar navbar-default" role="navigation">
+			<ul class="nav navbar-nav">
+				<li class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">Studenti 
+						<span class="caret"></span>
+					</a>
+					<ul class="dropdown-menu">
+						<li><a href="studenti.html">Soli nominativi</a></li>
+						<li><a href="studentiG.html">Nominativi e Indirizzi</a></li>
+						<li><a href="studentiG.html">Informazioni complete</a></li>
+						<li><a href="iscriviStudente.html">Iscrivi uno studente</a></li>
+					</ul>
+				</li>
+				<li class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">Gruppi 
+						<span class="caret"></span>
+					</a>
+					<ul class="dropdown-menu">
+						<li><a href="studenti.html">Soli nominativi</a></li>
+						<li><a href="studentiG.html">Studenti per gruppo</a></li>
+					</ul>
+				</li>
+				<li class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">Indirizzi
+						<span class="caret"></span>
+					</a>
+					<ul class="dropdown-menu">
+						<li><a href="studenti.html">Soli nominativi</a></li>
+						<li><a href="studentiG.html">Studenti per indirizzo</a></li>
+					</ul>
+				</li>
+				<li class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">Corsi
+						<span class="caret"></span>
+					</a>
+					<ul class="dropdown-menu">
+						<li><a href="studenti.html">Soli nominativi</a></li>
+						<li><a href="studentiG.html">Nominativi e corsi di laurea</a></li>
+						<li><a href="studentiG.html">Corsi e Studenti iscritti</a></li>
+						
+					</ul>
+				</li>
+				<li class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">Corsi di Laurea
+						<span class="caret"></span>
+					</a>
+					<ul class="dropdown-menu">
+						<li><a href="studenti.html">Nominativi e Dipartimento</a></li>
+						<li><a href="studentiG.html">Corsi afferenti ai Corsi diLaurea</a></li>
+						<li><a href="studentiG.html">Corsi e Studenti iscritti</a></li>
+					</ul>
+				</li>
+				<li class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">Corsi di Laurea
+						<span class="caret"></span>
+					</a>
+					<ul class="dropdown-menu">
+						<li><a href="studentiZ.html">Nominativi</a></li>
+						<li><a href="studentiZ.html">Corsi di Laurea</a></li>
+					</ul>
+				</li>
+			</ul>
+	</nav>
 	</header>
 
+		
 	<section id="information">
 		<header>
 			<h3>BENVENUTI NEL PORTALE DELLA SEGRETERIA STUDENTI</h3>
@@ -42,8 +114,7 @@
 			<header>
 				<h4>CENTRO ICT DI ATENEO</h4>
 			</header>
-			<div>
-				Dalla pagina accessibile da qui è possibile accedere a
+			<div>Dalla pagina accessibile da qui è possibile accedere a
 				tutti i servizi ed al Centro Customer Satisfaction (CCS) del Centro
 				ICT d’Ateneo. È possibile trovare il servizio desiderato sia
 				attraverso degli elenchi di servizi organizzati secondo la tipologia
@@ -51,69 +122,28 @@
 				di ricerca locale google. Per ogni servizio è stata approntata una
 				scheda descrittiva contenente tutte le informazioni sullo stesso.
 				Dal CCS invece è possibile valutare, accedere alle statistiche d’uso
-				o sporgere reclami sui servizi.
-			</div>
+				o sporgere reclami sui servizi.</div>
 		</article>
 	</section>
-	
+
 	<section id="titleMenuNavigation">
 		<div align="center">
 			<h3>
-				Vuoi vedere il portale delle Segreterie dell'Unical? 
-				<a href="http://www.unical.it"> Clicca qui </a>
+				Vuoi vedere il portale delle Segreterie dell'Unical? <a
+					href="http://www.unical.it"> Clicca qui </a>
 			</h3>
 		</div>
 		<div>
-			<h3>
-				Qui di seguito trovi le funzionalità previste dal portale per gestire le varie funzionalità.
-			</h3>
+			<h3>Qui di seguito trovi le funzionalità previste dal portale
+				per gestire le varie funzionalità.</h3>
+	
 		</div>
 	</section>
 
-	<nav id="navigationMenu" role="navigation">
-		<ol>
-			<li>Studenti</li>
-			<ul>
-				<li><a href="studenti.html">Soli nominativi</a></li>
-				<li><a href="studentiG.html">Nominativi e Indirizzi</a></li>
-				<li><a href="studentiG.html">Informazioni complete</a></li>
-				<li><a href="iscriviStudente.html">Iscrivi uno studente</a></li>
-			</ul>	
-			<li>Gruppi</li>
-			<ul>
-				<li><a href="studentiG.html">Soli nominativi</a></li>
-				<li><a href="studentiG.html">Studenti per Gruppo</a></li>		
-			</ul>
-			<li>Indirizzi</li>
-			<ul>
-				<li><a href="studentiZ.html">Soli nominativi</a></li>
-				<li><a href="studentiZ.html">Studenti per Indirizzo</a></li>		
-			</ul>
-			<li>Corsi</li>
-			<ul>
-				<li><a href="studentiZ.html">Soli nominativi</a></li>
-				<li><a href="studentiZ.html">Nominativi e Corsi di Laurea</a></li>
-				<li><a href="studentiZ.html">Corsi e Studenti iscritti</a></li>
-			</ul>
-			<li>Corsi di Laurea</li>
-			<ul>
-				<li><a href="studentiG.html">Nominativi e Dipartimento</a></li>
-				<li><a href="studentiG.html">Corsi afferenti ai Corsi di Laurea</a></li>
-				<li><a href="studentiG.html">Corsi e Studenti iscritti</a></li>
-			</ul>
-			<li>Dipartimenti</li>
-			<ul>
-				<li><a href="studentiZ.html">Nominativi</a></li>
-				<li><a href="studentiZ.html">Corsi di Laurea</a></li>
-			</ul>
-		</ol>
-	</nav>
 	<footer draggable="true">
 		<div align="right">
-			<small>
-				Sito web realizzato per il corso di web computing,
-				contatta l'esercitatore via
-				<a href="mailto:reale@dlvsystem.com">email</a>
+			<small> Sito web realizzato per il corso di web computing,
+				contatta l'esercitatore via <a href="mailto:reale@dlvsystem.com">email</a>
 			</small>
 		</div>
 	</footer>
