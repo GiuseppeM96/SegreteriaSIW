@@ -2,18 +2,13 @@
 <head lang="it">
 <title>Gestione Segreteria Studenti</title>
 <meta charset="utf-8">
-
-<link rel="stylesheet" href="bootstrap-3.3.7-dist/css/bootstrap.min.css">
-<script src="js/jquery-3.2.1.min.js"></script>
-<script src="bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
-
 <LINK rel="stylesheet" href="../css/common.css" type="text/css">
-
+<script src="../js/gestioneServizi.js"></script>
 </head>
 <body>
 <header>
-<h1>Elenco Studenti</h1>
-<h2>Portale per la gestione degli studenti afferenti a qualche corso di laurea</h2>
+<h1>Procedura calcolo ISEE</h1>
+<h2>Questa pagina contiene un simulatore per il calcolo dell'ISEE</h2>
 </header>
 
 <div class="table-responsive">
@@ -24,7 +19,8 @@
 			<th>Matricola</th>
 			<th>Nome</th>
 			<th>Cognome</th>
-			<th>Data di Nascita</td>	
+			<th>Data di Nascita</td>
+			<th>Calcola ISEE</td>	
 		</tr>
 		</thead>
 		
@@ -34,6 +30,7 @@
 			<td>Kristian</td>
 			<td>Reale</td>
 			<td><time>10/10/2010</time></td>
+			<td><input type="button" value = "Calcola ISEE" onclick="studente = new Studente('103123', 'Kristian', 'Reale', new Date('10/10/2010')); proceduraCalcoloISEE(studente);" /></td>
 		</tr>
 		
 		<tr class="active">
@@ -41,12 +38,14 @@
 			<td>Marco</td>
 			<td>Milano</td>
 			<td>11/09/2008</td>	
+			<td><input type="button" value = "Calcola ISEE" onclick="studente = new Studente('111111', 'Marco', 'Milano', new Date('11/09/2008')); proceduraCalcoloISEE(studente);" /></td>
 		</tr>
 		<tr class="success">
 			<td>222222</td>
 			<td>Giuseppe</td>
 			<td>Garibaldi</td>
 			<td>4/07/1807</td>
+			<td><input type="button" value = "Calcola ISEE" onclick="studente = new Studente('222222', 'Giuseppe', 'Garibaldi', new Date('4/07/1807')); proceduraCalcoloISEE(studente);" /></td>
 		</tr>
 		</tbody>
 		<tfoot>
@@ -59,6 +58,8 @@
 		</tfoot>
 	</table>
 </div>
+
+
 
 
 </body>
