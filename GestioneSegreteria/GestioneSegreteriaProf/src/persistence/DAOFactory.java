@@ -50,7 +50,7 @@ public abstract class DAOFactory {
 	 * Method to obtain a DATA ACCESS OBJECT
 	 * for the datatype 'Student'
 	 */
-	public abstract StudenteDao getStudentDAO();
+	public abstract StudenteDao getStudenteDAO();
 	
 	public abstract GruppoDao getGruppoDAO();
 	

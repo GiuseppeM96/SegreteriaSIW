@@ -75,6 +75,21 @@ class StudenteDaoJDBC implements StudenteDao {
 		}	
 		return studente;
 	}
+	
+	@Override
+	public StudenteCredenziali findByPrimaryKeyCredential(String matricola) {
+		Studente stud = findByPrimaryKey(matricola);
+		StudenteCredenziali studCred = null;
+		if (stud != null){
+			studCred = new StudenteCredenziali(dataSource);
+			studCred.setMatricola(stud.getMatricola());
+			studCred.setCognome(stud.getCognome());
+			studCred.setNome(stud.getNome());
+			studCred.setIndirizzo(stud.getIndirizzo());
+			studCred.setDataNascita(stud.getDataNascita());			
+		}
+		return studCred;
+	}
 
 	public List<Studente> findAll() {
 		Connection connection = this.dataSource.getConnection();
@@ -150,5 +165,26 @@ class StudenteDaoJDBC implements StudenteDao {
 				throw new PersistenceException(e.getMessage());
 			}
 		}
+	}
+	
+	@Override
+	public void setPassword(Studente studente, String password) {
+		Connection connection = this.dataSource.getConnection();
+		try {
+			String update = "update studente SET password = ? WHERE matricola=?";
+			PreparedStatement statement = connection.prepareStatement(update);
+			statement.setString(1, password);
+			statement.setString(2, studente.getMatricola());
+			statement.executeUpdate();
+		} catch (SQLException e) {
+			throw new PersistenceException(e.getMessage());
+		} finally {
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				throw new PersistenceException(e.getMessage());
+			}
+		}
+		
 	}
 }

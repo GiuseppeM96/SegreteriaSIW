@@ -94,3 +94,92 @@ function proceduraCalcoloISEE(studente){
 	
 	alert(reportISEECalcolato);
 }
+
+function ordinaStudenti(ordinaPer){	
+	var studenteSection = $("#elencoStudenti");	
+	var studentiTag = $("#elencoStudenti .studente");
+	
+	var studenti = new Array();	
+	var lunghezza = studentiTag.length;
+	for (var i = 0; i < lunghezza; i++){		
+		var elementTd = studentiTag.first();				
+		var element = elementTd.find("td").first();
+		var matricola = element.text();			
+		element = element.next();
+		var nome = element.text();		
+		element = element.next();
+		var cognome = element.text();
+		element = element.next();
+		var datanascita = element.text();		
+				
+		var s = new Studente(matricola, nome, cognome, new Date(datanascita));
+		
+		studenti.push(s);		
+		studentiTag = studentiTag.next();
+	}
+	
+	
+	//Bubble sort
+	for (var i = 0; i < studenti.length - 1; i++){		
+		for (var j = i + 1; j < studenti.length; j++){
+			var temp;
+			var scambia = false;
+			switch (ordinaPer){			
+			case "nome":
+				if (studenti[i].nome > studenti[j].nome){
+					scambia = true;
+				}
+				break;
+			case "cognome":
+				if (studenti[i].cognome > studenti[j].cognome){
+					scambia = true;
+				}
+				break;
+			case "dataNascita":
+				if (studenti[i].dataNascita > studenti[j].dataNascita){
+					scambia = true;
+				}
+				break;
+			case "matricola":
+			default:
+				if (studenti[i].matricola > studenti[j].matricola){
+					scambia = true;
+				}
+			}				
+			if (scambia){
+				temp = studenti[i];
+				studenti[i] = studenti[j];
+				studenti[j] = temp;
+			}
+		}
+	}	
+	studenteSection.empty();
+	for (var i = 0; i < studenti.length; i++){			
+		var alternate;
+		if ((i % 2) == 0){
+			alternate = "success";
+		}else{
+			alternate = "active";
+		}		
+		
+		var riga = $("<tr></tr>");
+		studenteSection.append(riga);	
+		
+		riga.addClass(alternate);
+		riga.addClass("studente");				
+				
+		var col1 = $("<td>" + studenti[i].matricola + "</td>");
+		riga.html(col1);		
+		
+		var col2 = $("<td>" + studenti[i].nome + "</td>");
+		col1.after(col2);		
+		
+		var col3 = $("<td>" + studenti[i].cognome + "</td>");
+		col2.after(col3);		
+		
+		var col4 = $("<td><time>" + studenti[i].dataNascita + "</time></td>");
+		col3.after(col4);		 				
+	}
+}
+
+

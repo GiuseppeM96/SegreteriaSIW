@@ -54,7 +54,7 @@ public class MainJDBC {
 		//find gruppo
 		//delete gruppo/studenti
 		
-		StudenteDao studenteDao = factory.getStudentDAO();
+		StudenteDao studenteDao = factory.getStudenteDAO();
 		GruppoDao gruppoDao = factory.getGruppoDAO();
 		IndirizzoDao indirizzoDao = factory.getIndirizzoDAO();
 		CorsoDao corsoDao = factory.getCorsoDAO();
@@ -82,13 +82,17 @@ public class MainJDBC {
 		gruppo1.addStudente(studente2);
 		
 		Indirizzo indirizzo1 = new Indirizzo();
-		indirizzo1.setNome("Telecomunicazioni");
+		indirizzo1.setNome("Logica Computazionale");
 		studente1.setIndirizzo(indirizzo1);
 		studente2.setIndirizzo(indirizzo1);
 		
 		Indirizzo indirizzo2 = new Indirizzo();
-		indirizzo2.setNome("Intelligenza Artificiale e Robotica");
+		indirizzo2.setNome("Robotica");
 		studente3.setIndirizzo(indirizzo2);
+		
+		Indirizzo indirizzo3 = new Indirizzo();
+		indirizzo3.setNome("Archeologia");
+		studente3.setIndirizzo(indirizzo3);
 		
 		Corso corso1 = new Corso();
 		corso1.setNome("Web Computing");
@@ -104,6 +108,7 @@ public class MainJDBC {
 		//CREATE
 		indirizzoDao.save(indirizzo1);
 		indirizzoDao.save(indirizzo2);
+		indirizzoDao.save(indirizzo3);
 		
 		studenteDao.save(studente1);
 		studenteDao.save(studente2);

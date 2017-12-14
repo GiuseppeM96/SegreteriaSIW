@@ -59,7 +59,7 @@ public void createDatabase(){
 				+ "create table afferisce(\"id\" bigint primary key, corso_codice bigint REFERENCES corso(\"codice\"), corsodilaurea_codice bigint REFERENCES corsodilaurea(\"codice\"));"
 				+ "create table studente(matricola CHARACTER(8) primary key,"				
 				+ "nome VARCHAR(255),cognome VARCHAR(255),"
-				+ "data_nascita DATE, gruppo_id bigint REFERENCES gruppo(\"id\"), indirizzo_codice bigint REFERENCES indirizzo(\"codice\"));"
+				+ "data_nascita DATE, gruppo_id bigint REFERENCES gruppo(\"id\"), indirizzo_codice bigint REFERENCES indirizzo(\"codice\"), password VARCHAR(255));"
 				+ "create table iscritto(\"id\" bigint primary key, matricola_studente CHARACTER(8) REFERENCES studente(\"matricola\"), corso_codice bigint REFERENCES corso(\"codice\"));";
 		
 		PreparedStatement statement = connection.prepareStatement(delete);

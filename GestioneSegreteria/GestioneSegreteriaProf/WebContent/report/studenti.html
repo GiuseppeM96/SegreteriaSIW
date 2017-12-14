@@ -3,11 +3,13 @@
 <title>Gestione Segreteria Studenti</title>
 <meta charset="utf-8">
 
-<link rel="stylesheet" href="bootstrap-3.3.7-dist/css/bootstrap.min.css">
-<script src="js/jquery-3.2.1.min.js"></script>
-<script src="bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="../bootstrap-3.3.7-dist/css/bootstrap.min.css">
+<script src="../js/jquery-3.2.1.min.js"></script>
+<script src="../bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
 
 <LINK rel="stylesheet" href="../css/common.css" type="text/css">
+
+<script src="../js/gestioneServizi.js"></script>
 
 </head>
 <body>
@@ -28,21 +30,21 @@
 		</tr>
 		</thead>
 		
-		<tbody>
-		<tr class="success">
+		<tbody id="elencoStudenti">
+		<tr class="success studente">
 			<td>103123</td>
 			<td>Kristian</td>
 			<td>Reale</td>
 			<td><time>10/10/2010</time></td>
 		</tr>
 		
-		<tr class="active">
+		<tr class="active studente">
 			<td>111111</td>
 			<td>Marco</td>
 			<td>Milano</td>
 			<td>11/09/2008</td>	
 		</tr>
-		<tr class="success">
+		<tr class="success studente">
 			<td>222222</td>
 			<td>Giuseppe</td>
 			<td>Garibaldi</td>
@@ -51,10 +53,10 @@
 		</tbody>
 		<tfoot>
 		<tr class="active">
-			<td><a href="">Ordina per Matricola</a></td>
-			<td><a href="">Ordina per Nome</a></td>
-			<td><a href="">Ordina per Cognome</a></td>
-			<td><a href="">Ordina per Data di nascita</a></td>	
+			<td><a href="javascript:onclick=ordinaStudenti('matricola')">Ordina per Matricola</a></td>
+			<td><a href="javascript:onclick=ordinaStudenti('nome')" href="">Ordina per Nome</a></td>
+			<td><a href="javascript:onclick=ordinaStudenti('cognome')" href="">Ordina per Cognome</a></td>
+			<td><a href="javascript:onclick=ordinaStudenti('dataNascita')" href="">Ordina per Data di nascita</a></td>	
 		</tr>
 		</tfoot>
 	</table>

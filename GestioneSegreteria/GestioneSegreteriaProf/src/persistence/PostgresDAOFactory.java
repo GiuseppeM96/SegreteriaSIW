@@ -35,7 +35,7 @@ class PostgresDAOFactory extends DAOFactory {
 	// --------------------------------------------
 	
 	@Override
-	public StudenteDao getStudentDAO() {
+	public StudenteDao getStudenteDAO() {
 		return new StudenteDaoJDBC(dataSource);
 	}
 
